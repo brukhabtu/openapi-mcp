@@ -50,12 +50,20 @@ See the [Development Plan](DEVELOPMENT_PLAN.md) for details on the project roadm
 
 ```bash
 # Development setup
-git clone https://github.com/yourusername/openapi-mcp.git
+git clone https://github.com/brukhabtu/openapi-mcp.git
 cd openapi-mcp
 uv venv
 source .venv/bin/activate  # On Unix-like systems
 # or .venv\Scripts\activate  # On Windows
 uv pip install -e ".[dev]"
+
+# Run tests
+uv run pytest
+
+# Run linting and type checking
+uv run black src tests
+uv run ruff src tests
+uv run mypy src
 ```
 
 ## License
