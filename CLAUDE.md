@@ -18,6 +18,13 @@
 - Type check: `uv run mypy src`
 - Run all checks: `uv run black src tests && uv run ruff src tests && uv run mypy src`
 
+## CI/CD
+- CI runs on pull requests and pushes to main
+- Automated checks: Black, Ruff, MyPy, Pytest
+- Release workflow triggers on tags with format `v*.*.*`
+- See .github/workflows/ for configuration details
+- Contributing guide: .github/CONTRIBUTING.md
+
 ## Code Style Guidelines
 - Line length: 88 characters (Black default)
 - Python: 3.10+ with strict typing (disallow_untyped_defs = true)
@@ -27,11 +34,16 @@
 - Type hints: Required for all functions and class attributes
 - Error handling: Use specific exceptions with meaningful messages
 - Dependencies: mcp, pyyaml, click, requests (with pytest, black, ruff, mypy for dev)
+- Module structure: Organize code in logical modules following the project structure
+
+## Project Phases & Milestones
+- Phase 1: Foundation and Core Functionality (spec processing, client generation)
+- Phase 2: MCP Wrapper Generation (resource mapping, tool mapping)
+- Phase 3: Enhancement and Polish (schema improvements, testing, CLI)
+- Phase 4: Advanced Features (customization, authentication, optimization)
+- Development plan: See DEVELOPMENT_PLAN.md for detailed timeline
 
 ## Project Tracking
 - GitHub Project: https://github.com/users/brukhabtu/projects/2
-- Check current priorities: `gh project item-list 2 --owner brukhabtu --format json`
-- View Todo issues: `gh api graphql -f query='query{user(login:"brukhabtu"){projectV2(number:2){items(first:100){nodes{content{...on Issue{title number labels{nodes{name}} milestone{title}}}}}}}}' | grep "Todo"`
+- View Todo issues: `gh issue list --repo brukhabtu/openapi-mcp --state open --label "status:todo"`
 - View In Progress: `gh issue list --repo brukhabtu/openapi-mcp --state open --label "status:in-progress"`
-- View milestones: `gh api repos/brukhabtu/openapi-mcp/milestones`
-- Development plan: See DEVELOPMENT_PLAN.md
