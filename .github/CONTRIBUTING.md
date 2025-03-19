@@ -23,6 +23,7 @@ Thank you for considering contributing to OpenAPI-MCP! This document outlines th
 This project uses GitHub Actions for continuous integration and deployment:
 
 - **CI Workflow**: Runs on every push to main and on every pull request
+  - Uses [astral-sh/setup-uv](https://github.com/astral-sh/setup-uv) to install and cache uv
   - Linting checks with Black, Ruff, and MyPy
   - Tests with Pytest on multiple Python versions (3.10, 3.11)
 
