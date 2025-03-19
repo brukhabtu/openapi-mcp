@@ -27,7 +27,7 @@ jobs:
       - name: Lint with black
         run: |
           source .venv/bin/activate
-          uv run black --check src tests
+          uv run black --diff src tests || (echo "Run 'black src tests' locally to fix formatting" && exit 1)
           
       - name: Lint with ruff
         run: |
