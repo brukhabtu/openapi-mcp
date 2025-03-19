@@ -1,6 +1,6 @@
+import os
 import unittest
 from pathlib import Path
-import os
 
 # This will be implemented in a future issue
 # from openapi_mcp.spec_processor import SpecProcessor
