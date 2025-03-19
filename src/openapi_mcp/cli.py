@@ -5,6 +5,7 @@ Command-line interface for OpenAPI-MCP.
 import click
 from pathlib import Path
 
+
 @click.group()
 def main() -> None:
     """Convert OpenAPI specifications into Model Context Protocol servers."""

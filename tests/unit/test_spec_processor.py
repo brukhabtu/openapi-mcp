@@ -13,7 +13,7 @@ class TestSpecProcessor(unittest.TestCase):
         """Set up test fixtures."""
         self.examples_dir = Path(__file__).parents[2] / "examples"
         self.petstore_spec = self.examples_dir / "petstore" / "openapi.yaml"
-        
+
     def test_load_spec_from_file(self):
         """Test loading an OpenAPI spec from a file."""
         # This test will be implemented once the spec_processor module is created
@@ -27,7 +27,7 @@ class TestSpecProcessor(unittest.TestCase):
         """Test loading an OpenAPI spec from a URL."""
         # This test will be implemented once the spec_processor module is created
         pass
-        
+
     def test_validate_spec(self):
         """Test validating an OpenAPI specification."""
         # This test will be implemented once the spec_processor module is created
