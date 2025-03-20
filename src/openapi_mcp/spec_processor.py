@@ -217,4 +217,5 @@ class SpecProcessor:
         components = self.spec.get("components", {})
         schemas = components.get("schemas", {})
         
-        return schemas
+        # Explicitly cast to correct return type to satisfy mypy
+        return dict(schemas)
