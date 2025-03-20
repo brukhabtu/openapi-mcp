@@ -25,6 +25,7 @@ dependencies = [
     "pyyaml>=6.0",
     "click>=8.0.0",
     "requests>=2.0.0",
+    "wheel>=0.37.0",
 ]
 
 [project.optional-dependencies]
