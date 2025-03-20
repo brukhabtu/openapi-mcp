@@ -147,13 +147,16 @@ class SpecProcessor:
         openapi_version = self.spec.get("openapi", "")
         if not openapi_version.startswith(("3.0", "3.1")):
             raise ValueError(
-                f"Unsupported OpenAPI version: {openapi_version}. Expected 3.0.x or 3.1.x"
+                f"Unsupported OpenAPI version: {openapi_version}. "
+                f"Expected 3.0.x or 3.1.x"
             )
         
         # Validate info section
         info = self.spec.get("info", {})
         if not isinstance(info, dict) or "title" not in info or "version" not in info:
-            raise ValueError("Invalid 'info' section: must contain 'title' and 'version'")
+            raise ValueError(
+                "Invalid 'info' section: must contain 'title' and 'version'"
+            )
         
         # Validate paths section
         paths = self.spec.get("paths", {})
