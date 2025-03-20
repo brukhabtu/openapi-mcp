@@ -30,22 +30,23 @@ class TestSpecProcessor(unittest.TestCase):
     def test_load_spec_from_file_json(self):
         """Test loading an OpenAPI spec from a JSON file."""
         # Create a temporary JSON file with the OpenAPI spec
-        with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as temp_file:
-            temp_path = Path(temp_file.name)
-            try:
-                # Convert YAML to JSON and write to temp file
-                processor = SpecProcessor()
-                yaml_spec = processor.load_from_file(self.petstore_spec)
+        temp_path = Path(tempfile.mktemp(suffix=".json"))
+        try:
+            # Convert YAML to JSON and write to temp file
+            processor = SpecProcessor()
+            yaml_spec = processor.load_from_file(self.petstore_spec)
+            
+            with open(temp_path, "w", encoding="utf-8") as temp_file:
                 json.dump(yaml_spec, temp_file)
-                temp_file.flush()
-                
-                # Load from JSON file
-                processor = SpecProcessor()
-                json_spec = processor.load_from_file(temp_path)
-                self.assertEqual(json_spec['info']['title'], "Petstore API")
-                self.assertEqual(json_spec['info']['version'], "1.0.0")
-            finally:
-                # Cleanup the temp file
+            
+            # Load from JSON file
+            processor = SpecProcessor()
+            json_spec = processor.load_from_file(temp_path)
+            self.assertEqual(json_spec['info']['title'], "Petstore API")
+            self.assertEqual(json_spec['info']['version'], "1.0.0")
+        finally:
+            # Cleanup the temp file
+            if temp_path.exists():
                 os.unlink(temp_path)
     
     def test_load_spec_file_not_found(self):
@@ -106,10 +107,14 @@ class TestSpecProcessor(unittest.TestCase):
         self.assertGreater(len(endpoints), 0)
         
         # Verify endpoint structure
-        endpoint = next(ep for ep in endpoints if ep['path'] == '/pets' and ep['method'] == 'GET')
-        self.assertEqual(endpoint['operation_id'], 'listPets')
-        self.assertEqual(endpoint['summary'], 'List all pets')
-        self.assertIn('parameters', endpoint)
+        # Find an endpoint by path and method
+        pets_endpoint = [
+            ep for ep in endpoints 
+            if ep['path'] == '/pets' and ep['method'] == 'GET'
+        ][0]
+        self.assertEqual(pets_endpoint['operation_id'], 'listPets')
+        self.assertEqual(pets_endpoint['summary'], 'List all pets')
+        self.assertIn('parameters', pets_endpoint)
     
     def test_get_schemas(self):
         """Test extracting schema definitions from the specification."""

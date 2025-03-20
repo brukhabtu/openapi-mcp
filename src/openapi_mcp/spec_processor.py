@@ -1,7 +1,8 @@
 """
 OpenAPI specification processor module.
 
-This module provides functionality to load, validate, and process OpenAPI specifications.
+This module provides functionality to load, validate, and process
+OpenAPI specifications.
 """
 
 from pathlib import Path
@@ -97,7 +98,11 @@ class SpecProcessor:
                 self.spec = response.json()
             except json.JSONDecodeError as e:
                 raise ValueError(f"Invalid JSON response: {e}")
-        elif any(fmt in content_type for fmt in ["application/yaml", "application/x-yaml", "text/yaml"]):
+        elif any(fmt in content_type for fmt in [
+            "application/yaml", 
+            "application/x-yaml", 
+            "text/yaml"
+        ]):
             try:
                 self.spec = yaml.safe_load(response.text)
             except yaml.YAMLError as e:
@@ -134,12 +139,16 @@ class SpecProcessor:
         required_fields = ["openapi", "info", "paths"]
         for field in required_fields:
             if field not in self.spec:
-                raise ValueError(f"Invalid OpenAPI specification: missing required field '{field}'")
+                raise ValueError(
+                    f"Invalid OpenAPI specification: missing required field '{field}'"
+                )
         
         # Validate OpenAPI version
         openapi_version = self.spec.get("openapi", "")
         if not openapi_version.startswith(("3.0", "3.1")):
-            raise ValueError(f"Unsupported OpenAPI version: {openapi_version}. Expected 3.0.x or 3.1.x")
+            raise ValueError(
+                f"Unsupported OpenAPI version: {openapi_version}. Expected 3.0.x or 3.1.x"
+            )
         
         # Validate info section
         info = self.spec.get("info", {})

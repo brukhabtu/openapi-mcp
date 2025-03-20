@@ -93,7 +93,10 @@ def validate(spec_path: str, verbose: bool) -> None:
             if endpoints:
                 click.echo("\nEndpoints:")
                 for endpoint in endpoints:
-                    click.echo(f"  {endpoint['method']} {endpoint['path']} - {endpoint['summary'] or 'No summary'}")
+                    method = endpoint['method']
+                    path = endpoint['path']
+                    summary = endpoint['summary'] or 'No summary'
+                    click.echo(f"  {method} {path} - {summary}")
         
     except (ValueError, FileNotFoundError, requests.RequestException) as e:
         click.secho(f"Error: {str(e)}", fg="red", err=True)
