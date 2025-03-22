@@ -14,7 +14,7 @@ This allows any API defined with an OpenAPI spec to be used as an MCP server, ma
 
 ## Project Status
 
-This project is under active development following our [development plan](DEVELOPMENT_PLAN.md).
+This project is under active development. See our GitHub project board for status.
 
 ## Features (Planned)
 
@@ -46,7 +46,7 @@ python -m my_api_mcp
 
 ## Development
 
-See the [Development Plan](DEVELOPMENT_PLAN.md) for details on the project roadmap.
+See our GitHub project board for details on the project roadmap.
 
 ```bash
 # Development setup

@@ -43,7 +43,7 @@
 - Phase 2: MCP Wrapper Generation (resource mapping, tool mapping)
 - Phase 3: Enhancement and Polish (schema improvements, testing, CLI)
 - Phase 4: Advanced Features (customization, authentication, optimization)
-- Development plan: See DEVELOPMENT_PLAN.md for detailed timeline
+- Development plan: See GitHub project for detailed timeline
 
 ## Project Tracking
 - GitHub Project: https://github.com/users/brukhabtu/projects/2
