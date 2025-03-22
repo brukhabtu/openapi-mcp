@@ -7,10 +7,9 @@ Thank you for considering contributing to OpenAPI-MCP! This document outlines th
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/my-feature`
 3. Make your changes
-4. Run the linting and tests locally:
+4. Run formatting, type checking, and tests locally:
    ```bash
    uv run black src tests
-   uv run ruff src tests
    uv run mypy src
    uv run pytest
    ```
@@ -24,7 +23,7 @@ This project uses GitHub Actions for continuous integration and deployment:
 
 - **CI Workflow**: Runs on every push to main and on every pull request
   - Uses [astral-sh/setup-uv](https://github.com/astral-sh/setup-uv) to install and cache uv
-  - Linting checks with Black, Ruff, and MyPy
+  - Formatting checks with Black and type checking with MyPy
   - Tests with Pytest on multiple Python versions (3.10, 3.11)
 
 - **Release Workflow**: Runs when a tag with format `v*.*.*` is pushed
@@ -44,7 +43,6 @@ We follow [Semantic Versioning](https://semver.org/):
 Please adhere to the code style guidelines defined in the project:
 
 - Use Black for formatting
-- Follow Ruff's linting rules (E, F, I)
 - Include proper type annotations (checked by MyPy)
 - Write docstrings for all public modules, functions, classes, and methods
 

@@ -60,9 +60,8 @@ uv pip install -e ".[dev]"
 # Run tests
 uv run pytest
 
-# Run linting and type checking
+# Run formatting and type checking
 uv run black src tests
-uv run ruff src tests
 uv run mypy src
 ```
 
