@@ -94,7 +94,7 @@ class TestClientGenerator:
                 ClientGenerator()
             assert "openapi-generator-cli is not available" in str(excinfo.value)
     
-    def test_load_spec_from_file(self, spec_file):
+    def test_load_spec_from_file(self, spec_file, mock_generator):
         """Test loading a spec from a file."""
         generator = ClientGenerator()
         with mock.patch.object(SpecProcessor, "load_from_file") as mock_load:
@@ -103,7 +103,7 @@ class TestClientGenerator:
             mock_load.assert_called_once_with(spec_file)
             assert result == {"openapi": "3.0.0"}
     
-    def test_load_spec_from_url(self):
+    def test_load_spec_from_url(self, mock_generator):
         """Test loading a spec from a URL."""
         url = "https://example.com/openapi.yaml"
         generator = ClientGenerator()
@@ -113,7 +113,7 @@ class TestClientGenerator:
             mock_load.assert_called_once_with(url)
             assert result == {"openapi": "3.0.0"}
     
-    def test_generate_client_without_loaded_spec(self, tmp_path):
+    def test_generate_client_without_loaded_spec(self, tmp_path, mock_generator):
         """Test generating a client without a loaded spec."""
         generator = ClientGenerator()
         with pytest.raises(ValueError) as excinfo:
@@ -165,7 +165,7 @@ class TestClientGenerator:
             assert "--additional-properties=packageName=custom_package" in cmd
             assert "--additional-properties=library=aiohttp" in cmd
     
-    def test_generate_client_subprocess_error(self, sample_spec, tmp_path):
+    def test_generate_client_subprocess_error(self, sample_spec, tmp_path, mock_generator):
         """Test handling of subprocess errors during generation."""
         generator = ClientGenerator()
         generator.spec_processor.spec = sample_spec
@@ -181,7 +181,7 @@ class TestClientGenerator:
                     generator.generate_client(tmp_path)
                 assert "Client generation failed" in str(excinfo.value)
     
-    def test_validate_generated_client(self, tmp_path):
+    def test_validate_generated_client(self, tmp_path, mock_generator):
         """Test validating a generated client."""
         generator = ClientGenerator()
         
@@ -195,7 +195,7 @@ class TestClientGenerator:
         # Should validate successfully
         assert generator.validate_generated_client(client_dir) is True
     
-    def test_validate_generated_client_missing_files(self, tmp_path):
+    def test_validate_generated_client_missing_files(self, tmp_path, mock_generator):
         """Test validating a client with missing files."""
         generator = ClientGenerator()
         
