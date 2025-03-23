@@ -7,10 +7,12 @@ A tool for converting OpenAPI specifications into Model Context Protocol (MCP) s
 OpenAPI-MCP bridges the gap between REST APIs and large language models by:
 
 1. Taking an OpenAPI specification as input
-2. Generating a Python client for the API
+2. Generating a Python client for the API using [openapi-python-client](https://github.com/openapi-generators/openapi-python-client)
 3. Creating an MCP wrapper that exposes the API to language models
 
 This allows any API defined with an OpenAPI spec to be used as an MCP server, making it accessible to Claude and other LLMs through the Model Context Protocol.
+
+The generated Python client features modern Python practices including type annotations, dataclasses, and async support.
 
 ## Project Status
 
@@ -32,6 +34,8 @@ This project is under active development. See our GitHub project board for statu
 # Not yet available - project in development
 pip install openapi-mcp
 ```
+
+No external dependencies like npm or Node.js are required, as this tool uses pure Python libraries.
 
 ## Usage
 
